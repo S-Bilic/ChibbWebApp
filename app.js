@@ -5,6 +5,8 @@ var bodyParser = require('body-parser');
 var exphbs = require('express-handlebars');
 var expressValidator = require('express-validator');
 var flash = require('connect-flash');
+var handlebars = require('handlebars');
+var http = require('http');
 var session = require('express-session');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
@@ -79,6 +81,28 @@ app.use(function(req,res, next){
 
 app.use('/', routes);
 app.use('/', users);
+
+// get API stream data
+http.get('http://145.24.222.154/api/sensors/', function(res) {
+    var body = '';
+    res.on('data', function(chunk){
+        body += chunk;
+    });
+    res.on('end', function(){
+        var data = JSON.parse(body);
+        console.log(data);
+        // db.collection('streamdata').insert(data, function(error, record) {
+        //     if (error) throw error;
+        //     console.log("data saved");
+        // });
+    });
+
+    handlebars.registerHelper('toJSON', function() {
+        var data = JSON.parse(body);
+        return JSON.stringify(data,["Temp"]);
+    });
+});
+
 
 
 // Set Port
