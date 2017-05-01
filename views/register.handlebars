@@ -1,0 +1,52 @@
+
+<video autoplay="autoplay" muted loop id="bgvid">
+    <source src="image/chibb_model.mp4" type="video/mp4">
+</video>
+
+<div class="container">
+    <div class="row">
+        <form method="post" class="form-block" action="/register">
+        {{#if errors}}
+            <div class="warning-block center-block animated shake">
+                <div class="col-xs-12">
+                    {{#each errors}}
+                        <div class="alert alert-danger alert-register">{{msg}}</div>
+                    {{/each}}
+                </div>
+            </div>
+        {{/if}}
+            <div class="register-block center-block">
+                <div class="form-group">
+                    <div class="col-xs-12 vertical-offset">
+                        <label>Username:</label>
+                        <input class="form-control" type="text" placeholder="Username" name="username" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12 vertical-offset">
+                        <label>Email address:</label>
+                        <input class="form-control" type="text" placeholder="Email address" name="email" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12 vertical-offset">
+                        <label>Password:</label>
+                        <input class="form-control" type="password" placeholder="Password" name="password" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12 vertical-offset">
+                        <label>Confirm Password</label>
+                        <input class="form-control" type="password" placeholder="Confirm Password" name="password2" >
+                    </div>
+                </div>
+                <div class="col-xs-12 vertical-offset-extra">
+                    <button class="btn btn-register-submit" type="submit"> REGISTER </button>
+                </div>
+                <div class="col-xs-12 vertical-offset">
+                    <input class="btn btn-register-back" type="button" value="BACK" >
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

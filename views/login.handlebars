@@ -1,0 +1,59 @@
+
+<video autoplay="autoplay" muted loop id="bgvid">
+    <source src="image/chibb_model.mp4" type="video/mp4">
+</video>
+
+<div class="container">
+    <div class="row">
+        <form method="post" class="form-block" action="/login">
+            <div class="message-block center-block animated fadeInUp">
+                {{#if success_msg}}
+                    <div class="col-xs-12">
+                        <div class="alert alert-success alert-login">{{success_msg}}</div>
+                    </div>
+                {{/if}}
+
+                {{#if error_msg}}
+                <div class="col-xs-12">
+                    <div class="alert alert-danger alert-login">{{error_msg}}</div>
+                </div>
+                {{/if}}
+
+                {{#if error}}
+                <div class="col-xs-12">
+                    <div class="alert alert-danger alert-login">{{error}}</div>
+                </div>
+                {{/if}}
+            </div>
+            <div class="login-block center-block">
+                <div class="form-group">
+                    <div class="col-xs-12 vertical-offset">
+                        <label>Username:</label>
+                        <input class="form-control" type="text" placeholder="Username" name="username" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12 vertical-offset">
+                        <label>Password:</label>
+                        <input class="form-control" type="password" placeholder="Password" name="password" >
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <button type="submit" class="btn btn-login">LOGIN</button>
+                </div>
+                <div class="col-xs-12 vertical-offset text-center">
+                    <label>OR</label>
+                    <!--<input type="button" class="btn btn-public" value="PUBLIC VIEW" >-->
+                    <a href="/public" class="btn btn-public">PUBLIC VIEW</a>
+                </div>
+                <div class="col-xs-12 vertical-offset-extra text-center">
+                    <label>Don't have an account?</label>
+                    <input type="button" class="btn btn-register" value="REGISTER" >
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
