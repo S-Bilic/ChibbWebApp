@@ -108,8 +108,20 @@ video#bgvid {
 }
 /*#endregion*/
 
-#chartdiv {
-    width		: 100%;
-    height		: 500px;
-    font-size	: 11px;
+#myChart1 {
+    width:100%;
+}
+
+#myChar2 {
+    width:100%;
+}
+
+#myChart3 {
+    width:100%;
+
+}
+
+#myChart4 {
+    width:100%;
+
 }
