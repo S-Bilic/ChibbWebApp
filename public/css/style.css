@@ -27,6 +27,10 @@ video#bgvid {
 .vertical-offset-extra {
     margin-top:20px;
 }
+
+.line-height {
+    line-height: 32px;
+}
 /*#endregion*/
 
 /*#region Login*/

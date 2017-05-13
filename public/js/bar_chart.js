@@ -27,44 +27,46 @@ function processRequest(e) {
             result[i] = value[1];
         }
 
-        // Use the result array in the chart data
-        var ctx = document.getElementById("myChart4");
-        var myChart4 = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-                datasets: [{
-                    label: '# of Votes',
-                    data: result,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255,99,132,1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero:true
-                        }
-                    }]
-                }
-            }
-        });
+        // Timestamp
+        var json = JSON.stringify(data, ['timestamp']);
+        json = json.replace(/[{}]/g, "");
+        var values = json.split(",");
+        var valueLength = values.length;
+        var timestamp = [];
+
+        // For loop to put every value that is splitted from the name with ':' in the result array
+        for (var i = 0;  i < valueLength; i++) {
+            var value = values[i].split(":");
+            timestamp[i] = value[1];
+        }
+
+       //here chart
     }
 }
 
+// Use the result array in the chart data
+var ctx = document.getElementById("myChart4");
+var myChart4 = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels:['Red', 'Blue', 'Green', 'Yellow'],
+        // labels: timestamp,
+        datasets: [{
+            label: 'Temperature',
+            data:[5, 10, 15, 40],
+            // data: result,
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgba(255,99,132,1)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
