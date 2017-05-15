@@ -45,9 +45,9 @@ function processRequest(e) {
 }
 
 // Use the result array in the chart data
-var ctx = document.getElementById("myChart3");
-var myChart3 = new Chart(ctx, {
-    type: 'bar',
+var ctx = document.getElementById("myChart4");
+var myChart4 = new Chart(ctx, {
+    type: 'line',
     data: {
         labels:['Red', 'Blue', 'Green', 'Yellow'],
         // labels: timestamp,

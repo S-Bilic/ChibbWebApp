@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var mongoose = require('mongoose');
 
 var User = require('../models/user');
 
@@ -16,7 +17,6 @@ router.post('/login',
     function (req, res) {
         res.redirect('/');
     });
-
 
 // Logout
 router.get('/logout', function(req, res){
@@ -66,7 +66,7 @@ router.post('/register', function(req, res){
     var password = req.body.password;
     var password2 = req.body.password2;
 
-    // Validation
+        // Validation
     req.checkBody('username','Username is required').notEmpty();
     req.checkBody('email','Email address is required').notEmpty();
     req.checkBody('email','Email is not valid').isEmail();

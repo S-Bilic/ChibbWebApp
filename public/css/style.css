@@ -31,6 +31,10 @@ video#bgvid {
 .line-height {
     line-height: 32px;
 }
+
+a.white {
+    color: #fff;
+}
 /*#endregion*/
 
 /*#region Login*/
@@ -128,4 +132,12 @@ video#bgvid {
 #myChart4 {
     width:100%;
 
+}
+
+.bg {
+    background: url(../image/background1.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }

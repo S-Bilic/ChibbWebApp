@@ -14,6 +14,7 @@ var mongo = require('mongodb');
 var mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost/registeruser');
+
 var db = mongoose.connection;
 
 var routes = require('./routes/index');

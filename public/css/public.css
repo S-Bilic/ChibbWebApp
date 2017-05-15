@@ -156,8 +156,47 @@ svg {
     100% {stroke-dashoffset: -35%;}
 }
 
-span.glyphicon-menu-down {
+.glyphicon{
     color:#000;
-    font-size: 4.2em;
+    font-size: 3.5em;
     margin-top:50px;
+}
+
+@media (max-width: 767px) {
+    .text-small {
+        font-size:15px;
+    }
+
+    .intro-section {
+        height: 100%;
+        padding-top: 150px;
+        text-align: center;
+        background: #fff;
+    }
+
+    .about-section {
+        height: 135%;
+        padding-top: 100px;
+        text-align: center;
+        background: #e5fff6;
+    }
+
+    .services-section {
+        height: 120%;
+        padding-top: 150px;
+        text-align: center;
+        background: #fff;
+    }
+
+    .contact-section {
+        height: 120%;
+        padding-top: 150px;
+        text-align: center;
+        background: #eee;
+    }
+
+}
+
+video {
+    width: 70%;
 }

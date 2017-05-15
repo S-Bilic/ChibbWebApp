@@ -15,7 +15,6 @@ var UserSchema = mongoose.Schema({
     }
 });
 
-
 // To make it usable in other files
 var User = module.exports = mongoose.model('User', UserSchema);
 

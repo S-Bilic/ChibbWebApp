@@ -1,11 +1,28 @@
 
-<video autoplay="autoplay" muted loop id="bgvid">
-    <source src="image/chibb_model.mp4" type="video/mp4">
-</video>
-
+<body class="bg">
+<a href="https://www.facebook.com/chibbatelier/" class="btn btn-social-icon btn-facebook pull-left white">
+    <span class="fa fa-2x fa-facebook"></span>
+</a>
+<a href="https://twitter.com/CHV_Rotterdam" class="btn btn-social-icon btn-twitter pull-left white">
+    <span class="fa fa-2x fa-twitter"></span>
+</a>
 <div class="container">
     <div class="row">
         <form method="post" class="form-block" action="/login">
+            <div class="col-xs-12">
+                <svg viewBox="0 0 1000 300">
+                    <symbol id="s-text">
+                        <text text-anchor="middle" x="50%" y="50%">CHIBB HOUSE</text>
+                    </symbol>
+                    <g class = "g-ants">
+                        <use xlink:href="#s-text" class="text-copy"></use>
+                        <use xlink:href="#s-text" class="text-copy"></use>
+                        <use xlink:href="#s-text" class="text-copy"></use>
+                        <use xlink:href="#s-text" class="text-copy"></use>
+                        <use xlink:href="#s-text" class="text-copy"></use>
+                    </g>
+                </svg>
+            </div>
             <div class="message-block center-block animated fadeInUp">
                 {{#if success_msg}}
                     <div class="col-xs-12">
@@ -56,4 +73,4 @@
 </div>
 
 
-
+</body>
