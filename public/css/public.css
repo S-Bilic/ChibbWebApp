@@ -200,3 +200,8 @@ svg {
 video {
     width: 70%;
 }
+
+.thermometer {
+    width: 10%;
+    overflow: hidden;;
+}

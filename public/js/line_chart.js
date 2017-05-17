@@ -1,6 +1,6 @@
 // get API stream data
 var xhr = new XMLHttpRequest();
-xhr.open('GET', "//145.24.222.154/api/sensors/", true);
+xhr.open('GET', "//145.24.222.154/api/sensors", true);
 xhr.send();
 
 xhr.onreadystatechange = processRequest;
@@ -10,63 +10,64 @@ function processRequest(e) {
         // JSON parse the data that is received
         var response = JSON.parse(xhr.responseText);
         var data = response;
-        // Get a specific name with a value from the json objects in the data
-        // Regex to remove the curly brackets from the data
-        // Separate the pairs(names and values) from each other
-        // Variable to check the length of the separated values
-        // Array variable where the output is gonna be put
-        var json = JSON.stringify(data, ['reading']);
-        json = json.replace(/[{}]/g, "");
-        var values = json.split(",");
-        var valueLength = values.length;
-        var result = [];
+        var temp = [];
+        var sortedDate = [];
+        var unsortedDate = [];
 
-        // For loop to put every value that is splitted from the name with ':' in the result array
-        for (var i = 0;  i < valueLength; i++) {
-            var value = values[i].split(":");
-            result[i] = value[1];
-        }
+        data.forEach(function (sensorNode) {
+           temp.push(sensorNode.reading);
+           unsortedDate.push(sensorNode.timestamp);
+        });
 
-        // Timestamp
-        var json = JSON.stringify(data, ['timestamp']);
-        json = json.replace(/[{}]/g, "");
-        var values = json.split(",");
-        var valueLength = values.length;
-        var timestamp = [];
+        var sort = unsortedDate.sort(function(x, y){
+           return x - y;
+        });
 
-        // For loop to put every value that is splitted from the name with ':' in the result array
-        for (var i = 0;  i < valueLength; i++) {
-            var value = values[i].split(":");
-            timestamp[i] = value[1];
-        }
+        sort.forEach(function (entry) {
+            var date = new Date(entry * 1000);
+            console.log(date);
+            formattedDate = date.getDate() + '-' + date.getMonth() + '-' + date.getFullYear();
+            sortedDate.push(formattedDate);
+            // formattedTime = date.getHours() + ';' + date.getMinutes() + ';' + date.getSeconds();
+            // sortedDate.push(formattedTime);
+        });
 
-       //here chart
+        // Use the result array in the chart data
+        var ctx = document.getElementById("myChart4");
+        var myChart4 = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: sortedDate,
+                datasets: [{
+                    label: 'Temperature',
+                    data: temp,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255,99,132,1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                            // maxTicksLimit: 20
+                        }
+                    }]
+                    // xAxes: [{
+                    //     ticks: {
+                    //         beginAtZero:true,
+                    //         maxTicksLimit: 5
+                    //     }
+                    // }]
+                }
+            }
+        });
     }
 }
 
-// Use the result array in the chart data
-var ctx = document.getElementById("myChart4");
-var myChart4 = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels:['Red', 'Blue', 'Green', 'Yellow'],
-        // labels: timestamp,
-        datasets: [{
-            label: 'Temperature',
-            data:[5, 10, 15, 40],
-            // data: result,
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-            borderColor: 'rgba(255,99,132,1)',
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        }
-    }
+/*Menu-toggle*/
+$("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("active");
 });

@@ -1,16 +1,56 @@
-<div class="container">
-    <div class="header clearfix">
-        <nav>
-            <ul class="nav nav-pills pull-right">
+<link rel="stylesheet" href="/css/index.css" />
+
+<div id="wrapper">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <a href="https://www.facebook.com/chibbatelier/" class="btn btn-social-icon btn-facebook pull-right">
+            <span class="fa fa-2x fa-facebook"></span>
+        </a>
+        <a href="https://twitter.com/CHV_Rotterdam" class="btn btn-social-icon btn-twitter pull-right">
+            <span class="fa fa-2x fa-twitter"></span>
+        </a>
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div  class="navbar-brand">
+                    <a id="menu-toggle" href="#">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                    <a href="#">CHIBB</a>
+                </div>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <nav id="spy">
+            <ul class="sidebar-nav nav">
                 {{#if user}}
-                    <li role="presentation"><a href="">Dashboard</a></li>
-                    <li role="presentation"><a href="/logout">Logout</a></li>
+                    <li>
+                        <a href="">DASSHBOARD</a>
+                    </li>
+                    <li>
+                        <a href="/logout">LOGOUT</a>
+                    </li>
                 {{else}}
-                    <li role="presentation"><a href="">Login</a></li>
-                    <li role="presentation"><a href="">Register</a></li>
+                    <li>
+                        <a href="">LOGIN</a>
+                    </li>
+                    <li>
+                        <a href="">REGISTER</a>
+                    </li>
                 {{/if}}
             </ul>
         </nav>
     </div>
 </div>
-
