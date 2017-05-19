@@ -43,9 +43,15 @@
                 <li>
                     <a class="page-scroll" href="#models">3D MODELS</a>
                 </li>
-                <li>
-                    <a class="" href="/login">LOGIN</a>
-                </li>
+                {{#if user}}
+                    <li>
+                        <a class="" href="/">DASHBOARD</a>
+                    </li>
+                {{else}}
+                    <li>
+                        <a class="" href="/login">LOGIN</a>
+                    </li>
+                {{/if}}
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -55,7 +61,6 @@
 
 <!-- Intro Section -->
 <section id="intro" class="intro-section">
-
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
@@ -145,8 +150,9 @@
                 </h1>
             </div>
             <div class="col-xs-12 vertical-offset-extra">
-                <canvas id="myChart4"></canvas>
+                {{> linechart}}
             </div>
+
         </div>
     </div>
     <a class="page-scroll arrow" href="#chart2">
@@ -189,7 +195,7 @@
 </section>
 <footer class="text-center">
     <h5>©2017 - Stefan Bilic</h5>
-<footer>
+</footer>
 </body>
 
 

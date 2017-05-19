@@ -63,11 +63,90 @@ function processRequest(e) {
                 }
             }
         });
+
+        var ctx = document.getElementById("myChart3");
+        var myChart3 = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                // labels:['Red', 'Blue', 'Green', 'Yellow'],
+                labels: sortedDate,
+                datasets: [{
+                    label: 'Temperature',
+                    // data:[5, 10, 15, 40],
+                    data: temp,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255,99,132,1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+        });
+
+        var pieData = {
+            labels: [
+                "Purple",
+                "Green",
+                "Orange",
+                "Yellow",
+            ],
+            datasets: [
+                {
+                    data: temp,
+                    backgroundColor: [
+                        "#878BB6",
+                        "#4ACAB4",
+                        "#FF8153",
+                        "#FFEA88",
+                        "#878BB6",
+                        "#4ACAB4",
+                        "#FF8153",
+                        "#FFEA88",
+                        "#878BB6",
+                        "#4ACAB4",
+                        "#FF8153",
+                        "#FFEA88"
+                    ]
+                }]
+        };
+
+        var ctx = document.getElementById("myChart2").getContext("2d");
+        var myChart2 = new Chart(ctx, {
+            type: 'doughnut',
+            data: pieData
+        });
+
+        var ctx = document.getElementById("myChart1");
+        var myChart1 = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                // labels:['Red', 'Blue', 'Green', 'Yellow'],
+                labels: sortedDate,
+                datasets: [{
+                    label: 'Temperature',
+                    // data:[5, 10, 15, 40],
+                    data: temp,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255,99,132,1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+        });
     }
 }
-
-/*Menu-toggle*/
-$("#menu-toggle").click(function(e) {
-    e.preventDefault();
-    $("#wrapper").toggleClass("active");
-});
