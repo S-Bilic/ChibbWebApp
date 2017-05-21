@@ -1,11 +1,4 @@
 <link rel="stylesheet" href="/css/index.css" />
-<a href="https://www.facebook.com/chibbatelier/" class="btn btn-social-icon btn-facebook pull-right">
-    <span class="fa fa-2x fa-facebook"></span>
-</a>
-<a href="https://twitter.com/CHV_Rotterdam" class="btn btn-social-icon btn-twitter pull-right">
-    <span class="fa fa-2x fa-twitter"></span>
-</a>
-
     <nav class="navbar navbar-default sidebar" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -34,8 +27,8 @@
                         <ul class="dropdown-menu forAnimate" role="menu">
                             <form method="post">
                                 <li class="form-group">
-                                    <label>Add Sensor</label>
-                                    <input class="form-control" type="text" placeholder="Username" name="username" >
+                                    <label class="horizontal-offset">Add Sensor</label>
+                                    <input class="form-control" type="text" placeholder="Sensor Node" name="username" >
                                 </li>
                                 <li>
                                     <button class="btn btn-register-submit" type="submit"> SEND </button>
@@ -45,32 +38,68 @@
                     </li>
                     <li>
                         <a href="/public">Public view
-                            <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon glyphicon glyphicon-globe"></span>
+                            <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-globe"></span>
                         </a>
                     </li>
                     <li>
                         <a href="/logout">Logout
-                            <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon glyphicon-log-out"></span>
+                            <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon  glyphicon-log-out"></span>
                         </a>
                     </li>
                 </ul>
+                <a href="https://www.facebook.com/chibbatelier/" class="btn btn-social-icon btn-facebook pull-right">
+                    <span class="fa fa-2x fa-facebook"></span>
+                </a>
+                <a href="https://twitter.com/CHV_Rotterdam" class="btn btn-social-icon btn-twitter pull-right">
+                    <span class="fa fa-2x fa-twitter"></span>
+                </a>
             </div>
         </div>
     </nav>
 
-    <div class="col-xs-12 col-md-4 vertical-offset">
-        {{> linechart}}
-    </div>
-    <div class="col-xs-12 col-md-4 vertical-offset">
-        {{> barchart}}
-    </div>
-    <div class="col-xs-12 col-md-4 vertical-offset-extra">
-        {{> piechart}}
-    </div>
-    <div class="col-xs-12 col-md-4 vertical-offset-extra">
-        {{> radarchart}}
-    </div>
+    <div class="col-xs-10">
+        <div class="col-xs-12 col-md-6 vertical-offset ">
+            <div class="well">
+                {{> linechart}}
+                <a id="download1"><span class="glyphicon showopacity glyphicon-save"></span></a>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6 vertical-offset">
+            <div class="well">
+                {{> barchart}}
+                <a id="download2"><span class="glyphicon showopacity glyphicon-save"></span></a>
+            </div>
+        </div>
 
-
-
-
+        <div class="col-xs-12 col-md-6">
+            <div class="card text-center well">
+                <div class="card-block">
+                    <h4 class="card-title">Special title treatment</h4>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <button id="updateData" onclick="updateData()"> UPDATE </button>
+                    <button id="SwitchTimeFormat" onclick="SwitchTimeFormat"> UPDATE </button>
+                    <button id="SwitchDateFormat" onclick="SwitchDateFormat"> UPDATE </button>
+                </div>
+                <div class="card-footer text-muted">
+                    2 days ago
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <div class="card text-center well">
+                <div class="card-block">
+                    <h4 class="card-title">Special title treatment</h4>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+                <div class="card-footer text-muted">
+                    2 days ago
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="well">
+                <div id="map"></div>
+            </div>
+        </div>
+    </div>
