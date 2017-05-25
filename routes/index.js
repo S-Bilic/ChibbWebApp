@@ -6,6 +6,11 @@ router.get('/', ensureAuthenticated, function(req, res){
     res.render('index');
 });
 
+// Get Homepage
+router.get('/chart', ensureAuthenticated, function(req, res){
+    res.render('addChart');
+});
+
 function ensureAuthenticated (req, res, next) {
     if(req.isAuthenticated()){
         return next();
