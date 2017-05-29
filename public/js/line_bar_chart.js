@@ -107,6 +107,21 @@ var line_bar_chart = function (link, chartType, id, color, bordercolor, label, Y
                 }
             });
 
+            $(document).ready(function () {
+                $('#test').click(function () {
+                    var obj = new Object();
+                    input = chartLink = obj.chartLink = $('#chartLink').val();
+
+                    if (input) {
+                        createChart(chartLink, "line", "myChart", "rgba(255, 99, 132, 0.2)", "rgb(255, 99, 132)",  'Temperature', '°C');
+                        myChart.destroy();
+                    }
+                    else {
+                        alert('error');
+                    }
+                });
+            });
+
             // function updateData() {
             //     myChart.data.datasets[0].data = recentY;
             //     myChart.data.labels = recentDateX;
