@@ -17,38 +17,45 @@ var line_bar_chart = function (link, chartType, id, color, bordercolor, label, Y
 
             var response = JSON.parse(xhr.responseText);
             var data = response;
+            // reverse();
             var reading = [];
-            var sortedDate = [];
+            // var sortedDate = [];
             var unsortedDate = [];
-            var sortedTime = [];
+            // var sortedTime = [];
 
             data.forEach(function (sensorNode) {
                 reading.push(sensorNode.reading);
                 unsortedDate.push(sensorNode.date);
             });
 
-            recentY = reading.slice(Math.max(reading.length -5));
+            // recentY = reading.slice(Math.max(readingLength -5));
+            recentY = reading;
+            recentDateX = unsortedDate;
 
-            var format = unsortedDate;
 
-            format.forEach(function (entry) {
-                var date = new Date(entry * 1000);
-                var seconds = "0" + date.getSeconds();
-                var minutes = "0" + date.getMinutes();
-                var hours = "0" + date.getHours();
-                var day = "0" + date.getDate();
-                var months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
-                var namedMonth = months[date.getMonth()];
+            // var format = unsortedDate;
+            //
+            // format.forEach(function (entry) {
+            //     // var date = new Date(entry * 1000);
+            //     // var seconds = "0" + date.getSeconds();
+            //     // var minutes = "0" + date.getMinutes();
+            //     // var hours = "0" + date.getHours();
+            //     // var day = "0" + date.getDate();
+            //     // var months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
+            //     // var namedMonth = months[date.getMonth()];
+            //
+            //     // formattedDate = day.substr(-2) + "-" +  namedMonth + "-" + date.getFullYear();
+            //     sortedDate.push(formattedDate);
+            //
+            //     // formattedTime = hours.substr(-2) + ';' + minutes.substr(-2)+ ';' + seconds.substr(-2);
+            //     sortedTime.push(formattedTime);
+            // });
+            //
+            // recentDateX = sortedDate.slice(Math.max(sortedDate.length -5));
+            // recentTimeX = sortedTime.slice(Math.max(sortedTime.length -5));
 
-                formattedDate = day.substr(-2) + "-" +  namedMonth + "-" + date.getFullYear();
-                sortedDate.push(formattedDate);
-
-                formattedTime = hours.substr(-2) + ';' + minutes.substr(-2)+ ';' + seconds.substr(-2);
-                sortedTime.push(formattedTime);
-            });
-
-            recentDateX = sortedDate.slice(Math.max(sortedDate.length -5));
-            recentTimeX = sortedTime.slice(Math.max(sortedTime.length -5));
+            // recentDateX = sortedDate;
+            // recentTimeX = sortedTime;
 
             // Use the result array in the chart data
             var ctx = document.getElementById(id);
