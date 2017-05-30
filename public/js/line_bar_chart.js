@@ -1,7 +1,6 @@
 // get API stream data
 
-
-var line_bar_chart = function (link, chartType, id, color, bordercolor, label, Ylabel) {
+function line_bar_chart(link, chartType, id, color, bordercolor, label, Ylabel) {
 
     var xhr = new XMLHttpRequest();
 
@@ -108,13 +107,29 @@ var line_bar_chart = function (link, chartType, id, color, bordercolor, label, Y
             });
 
             $(document).ready(function () {
-                $('#test').click(function () {
+                $('#chartLink, #chartLink2').change(function () {
+                    var Temp = "temperature";
+                    var Humid = "humidity";
+                    var urlAddress = "http://145.24.222.154/api/";
+                    var urlQuery = "?limit=5&sort=-date&sensor_id=";
+
+                    $("#inputTemp1").val(urlAddress + Temp + urlQuery + 1);
+                    $("#inputTemp2").val(urlAddress + Temp + urlQuery + 2);
+                    $("#inputTemp3").val(urlAddress + Temp + urlQuery + 3);
+
+                    $("#inputHumid1").val(urlAddress + Humid + urlQuery + 1);
+                    $("#inputHumid2").val(urlAddress + Humid + urlQuery + 2);
+                    $("#inputHumid3").val(urlAddress + Humid + urlQuery + 3);
+
                     var obj = new Object();
-                    input = chartLink = obj.chartLink = $('#chartLink').val();
+                    input =
+                        chartLink = obj.chartLink = $('#chartLink, #chartLink2').val();
 
                     if (input) {
                         createChart(chartLink, "line", "myChart", "rgba(255, 99, 132, 0.2)", "rgb(255, 99, 132)",  'Temperature', '°C');
-                        myChart.destroy();
+                        if (id == 'myChart') {
+                            myChart.destroy();
+                        }
                     }
                     else {
                         alert('error');

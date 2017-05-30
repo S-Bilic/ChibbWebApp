@@ -71,18 +71,34 @@
     </div>
 </nav>
 <div class="main">
-        <div class="col-xs-12 col-sm-12 col-md-6 vertical-offset">
+        <div class="col-xs-12 col-sm-12 col-md-6 vertical-offset-extra">
             <div class="well">
                 {{> linechart}}
-                <a id="download1"><span class="glyphicon showopacity glyphicon-save"></span></a>
-                <button class="btn switchFormat"> Switch Date/Hours </button>
+                <div class="col-xs-3 vertical-offset-extra select-padding">
+                    <select class="form-control test" id="chartLink">
+                        <option disabled selected hidden>Choose a Sensor</option>
+                        <option id="inputTemp1" value="">Sensor 1</option>
+                        <option id="inputTemp2" value="">Sensor 2</option>
+                        <option id="inputTemp3" value="">Sensor 3</option>
+                    </select>
+                </div>
+                <a id="download1"><span class="glyphicon showopacity glyphicon-save vertical-offset-extra pull-right" title="Save Image as PNG"></span></a>
+                <button class="btn btn-info switchFormat vertical-offset-extra"> Switch Date/Hours </button>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 vertical-offset">
+        <div class="col-xs-12 col-sm-12 col-md-6 vertical-offset-extra">
             <div class="well">
                 {{> barchart}}
-                <a id="download2"><span class="glyphicon showopacity glyphicon-save"></span></a>
-                <button class="btn switchFormat "> Switch Date/Hours </button>
+                <div class="col-xs-3 vertical-offset-extra select-padding">
+                    <select class="form-control test" id="chartLink2">
+                        <option disabled selected hidden>Choose a Sensor</option>
+                        <option id="inputHumid1" value="">Sensor 1</option>
+                        <option id="inputHumid2" value="">Sensor 2</option>
+                        <option id="inputHumid3" value="">Sensor 3</option>
+                    </select>
+                </div>
+                <a id="download1"><span class="glyphicon showopacity glyphicon-save vertical-offset-extra pull-right" title="Save Image as PNG"></span></a>
+                <button class="btn btn-info switchFormat vertical-offset-extra"> Switch Date/Hours </button>
             </div>
         </div>
         <div class="col-xs-12">
