@@ -74,32 +74,50 @@
         <div class="col-xs-12 col-sm-12 col-md-6 vertical-offset-extra">
             <div class="well">
                 {{> linechart}}
-                <div class="col-xs-3 vertical-offset-extra select-padding">
-                    <select class="form-control test" id="chartLink">
-                        <option disabled selected hidden>Choose a Sensor</option>
-                        <option id="inputTemp1" value="">Sensor 1</option>
-                        <option id="inputTemp2" value="">Sensor 2</option>
-                        <option id="inputTemp3" value="">Sensor 3</option>
-                    </select>
+                <div class="row">
+                    <div class="col-xs-3 vertical-offset-extra select-padding">
+                        <select class="form-control" id="chartLink">
+                            <option disabled selected hidden>Choose a Sensor</option>
+                            <option value="1">Sensor 1</option>
+                            <option value="2">Sensor 2</option>
+                            <option value="3">Sensor 3</option>
+                        </select>
+                    </div>
+                    <a id="download1"><span class="glyphicon showopacity glyphicon-save vertical-offset-extra pull-right" title="Save Image as PNG"></span></a>
                 </div>
-                <a id="download1"><span class="glyphicon showopacity glyphicon-save vertical-offset-extra pull-right" title="Save Image as PNG"></span></a>
-                <button class="btn btn-info switchFormat vertical-offset-extra"> Switch Date/Hours </button>
+                <div class="row">
+                    <div class="col-xs-3 vertical-offset select-padding">
+                        <input class="form-control" id="limitValue" placeholder="Enter Amount" />
+                    </div>
+                    <button id="switchFormat" class="btn btn-info vertical-offset pull-right"> Switch Date/Hours </button>
+                    <input type="button" class="btn btn-info vertical-offset" value="Generate" id="getValue" />
+                </div>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6 vertical-offset-extra">
-            <div class="well">
-                {{> barchart}}
-                <div class="col-xs-3 vertical-offset-extra select-padding">
-                    <select class="form-control test" id="chartLink2">
-                        <option disabled selected hidden>Choose a Sensor</option>
-                        <option id="inputHumid1" value="">Sensor 1</option>
-                        <option id="inputHumid2" value="">Sensor 2</option>
-                        <option id="inputHumid3" value="">Sensor 3</option>
-                    </select>
+
+                <div class="well">
+                    {{> barchart}}
+                    <div class="row">
+                        <a id="download1"><span class="glyphicon showopacity glyphicon-save vertical-offset-extra pull-right" title="Save Image as PNG"></span></a>
+                        <div class="col-xs-3 vertical-offset-extra select-padding">
+                            <select class="form-control" id="chartLink1">
+                                <option disabled selected hidden>Choose a Sensor</option>
+                                <option value="1">Sensor 1</option>
+                                <option value="2">Sensor 2</option>
+                                <option value="3">Sensor 3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3 vertical-offset select-padding">
+                            <input class="form-control" id="limitValue1" placeholder="Enter Amount" />
+                        </div>
+                        <button id="switchFormat1" class="btn btn-info vertical-offset pull-right">Switch Date/Hours </button>
+                        <input type="button" class="btn btn-info vertical-offset" value="Generate" id="getValue1" />
+                    </div>
                 </div>
-                <a id="download1"><span class="glyphicon showopacity glyphicon-save vertical-offset-extra pull-right" title="Save Image as PNG"></span></a>
-                <button class="btn btn-info switchFormat vertical-offset-extra"> Switch Date/Hours </button>
-            </div>
+
         </div>
         <div class="col-xs-12">
             <div class="well">
