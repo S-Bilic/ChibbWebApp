@@ -132,7 +132,7 @@ function line_bar_chart(link, chartType, id, color, bordercolor, label, Ylabel) 
                 input = $('.chartLink1 option:selected').val();
                 //if statement that checks the input > alert.
                 if (input == "choose") {
-                    swal("Oops!", "Choose a sensor for each chart first!", "error");
+                    swal("Oops!", "Choose a sensor first!", "error");
                 }
                     //else if statement that checks the corresponding chart id > pushes recent temperature data to the humidity chart.
                     else if(id == "myChart") {
@@ -146,7 +146,6 @@ function line_bar_chart(link, chartType, id, color, bordercolor, label, Ylabel) 
                         });
                         myChart.update();
                     }
-
             });
 
             //compare1 function with given statements that compares the humidity chart values in the temperature chart.
@@ -155,7 +154,7 @@ function line_bar_chart(link, chartType, id, color, bordercolor, label, Ylabel) 
                 input = $('.chartLink option:selected').val();
                 //if statement that checks the input > alert.
                 if (input == "choose") {
-                    swal("Oops!", "Choose a sensor for each chart first!", "error");
+                    swal("Oops!", "Choose a sensor first!", "error");
                 }
                     //else if statement that checks the corresponding chart id > pushes recent humidity data to the temperature chart.
                     else if(id == "myChart1") {
@@ -199,36 +198,6 @@ function line_bar_chart(link, chartType, id, color, bordercolor, label, Ylabel) 
                     astate = 0;
                 }
             });
-
-            // function isSiteOnline(url,callback) {
-            //     // try to load favicon
-            //     var timer = setTimeout(function(){
-            //         // timeout after 5 seconds
-            //         callback(false);
-            //     },5000)
-            //
-            //     var img = document.createElement("img");
-            //     img.onload = function() {
-            //         clearTimeout(timer);
-            //         callback(true);
-            //     }
-            //
-            //     img.onerror = function() {
-            //         clearTimeout(timer);
-            //         callback(false);
-            //     }
-            //
-            //     img.src = url+"/favicon.ico";
-            // }
-            //
-            // isSiteOnline("http://www.145.24.222.154/api/temperature",function(found){
-            //     if(found) {
-            //         alert("online")
-            //     }
-            //     else {
-            //        alert("false")
-            //     }
-            // })
         }
     }
 };

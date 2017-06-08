@@ -23,8 +23,7 @@
     "passport": "*",
     "mocha": "3.4.2",
     "passport-http": "*",
-    "passport-local": "*",
-    "describe": "*"
+    "passport-local": "*"
   },
   "devDependencies": {
     "mocha": "^3.4.2"
