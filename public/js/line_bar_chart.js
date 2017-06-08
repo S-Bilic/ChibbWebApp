@@ -1,72 +1,66 @@
-// get API stream data
-
+//line_bar_chart function with given parameters: link, chart type, chart id, chart color, chart border color, chart label, chart label Y axis.
 function line_bar_chart(link, chartType, id, color, bordercolor, label, Ylabel) {
 
+    //create the xhr(AJAX) connection that gets the specific API link containing the JSON data.
     var xhr = new XMLHttpRequest();
-
     xhr.open('GET', link, true);
-
     xhr.send();
-
     xhr.onreadystatechange = processRequest;
 
     function processRequest(e) {
+        //checks the xhr status response.
         if (xhr.readyState == 4 && xhr.status == 200) {
-            // JSON parse the data that is received
 
+            //parse the JSON data that is received from the xhr.
             var response = JSON.parse(xhr.responseText);
             var data = response;
+
+            //arrays that are used for containing different values from the JSON objects.
+            //reading: temperature/humidity values, timestamp: unix timestamp code, dateDate: timestamp converted to DD/MM/YYYY, dateTime: timestamp converted to HH/MM/SS.
             var reading = [];
-            var date = [];
-            var dateDays = [];
+            var timestamp = [];
+            var dateDate = [];
             var dateTime = [];
 
+            //get the readings and timestamps for each object in the response data.
             data.forEach(function (sensorNode) {
                 reading.push(sensorNode.reading);
-                date.push(sensorNode.date);
+                timestamp.push(sensorNode.date);
             });
 
+            //for easy understanding give a new variable to "reading", because the recent readings are displayed on the Y axis in the chart.
             recentY = reading;
 
+            //get only the first RecentY with given statements for each chart to display in Google Maps.
+            if (id == "myChart") {
+                firstRecentY = recentY[0];
+            }
+            if (id == "myChart1") {
+                firstRecentY1 = recentY[0];
+            }
 
-            date.forEach(function (sensorDate) {
-                splitDate = sensorDate.split(" ");
-                day = splitDate[0];
-                dateDays.push(day);
-                time = splitDate[1];
-                dateTime.push(time);
+            //convert each timestamp to a readable date.
+            timestamp.forEach(function (entry) {
+                var date = new Date(entry);
+                var seconds = "0" + date.getSeconds();
+                var minutes = "0" + date.getMinutes();
+                var hours = "0" + date.getHours();
+                var day = "0" + date.getDate();
+                var months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
+                var namedMonth = months[date.getMonth()];
+
+                formattedDate = day.substr(-2) + "-" + namedMonth + "-" + date.getFullYear();
+                dateDate.push(formattedDate);
+
+                formattedTime = hours.substr(-2) + ';' + minutes.substr(-2) + ';' + seconds.substr(-2);
+                dateTime.push(formattedTime);
             });
 
-            recentDateX = dateDays;
+            //for easy understanding give a new variable to "dateDate" and "dateTime", because the recent DD/MM/YYYY and HH/MM/SS are displayed on the X axis in the chart.
+            recentDateX = dateDate;
             recentTimeX = dateTime;
 
-            // var format = unsortedDate;
-            //
-            // format.forEach(function (entry) {
-            //     // var date = new Date(entry * 1000);
-            //     // var seconds = "0" + date.getSeconds();
-            //     // var minutes = "0" + date.getMinutes();
-            //     // var hours = "0" + date.getHours();
-            //     // var day = "0" + date.getDate();
-            //     // var months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
-            //     // var namedMonth = months[date.getMonth()];
-            //
-            //     // formattedDate = day.substr(-2) + "-" +  namedMonth + "-" + date.getFullYear();
-            //     sortedDate.push(formattedDate);
-            //
-            //     // formattedTime = hours.substr(-2) + ';' + minutes.substr(-2)+ ';' + seconds.substr(-2);
-            //     sortedTime.push(formattedTime);
-            // });
-            //
-            // recentDateX = sortedDate.slice(Math.max(sortedDate.length -5));
-            // recentTimeX = sortedTime.slice(Math.max(sortedTime.length -5));
-
-            // recentDateX = sortedDate;
-            // recentTimeX = sortedTime;
-
-            // Use the result array in the chart data
-
-
+            //before creating a new chart remove the chart id, hidden iframe and give a new canvas.
             if (id == "myChart") {
                 $('#myChart').remove();
                 $('iframe.chartjs-hidden-iframe').remove();
@@ -78,21 +72,27 @@ function line_bar_chart(link, chartType, id, color, bordercolor, label, Ylabel) 
                 $('#graphContainer1').append('<canvas id="myChart1"><canvas>');
             }
 
+            //chart properties including the parameters of the "line_bar_chart" function
+            Chart.defaults.global.elements.responsive = true;
+            //chart id
             var ctx = document.getElementById(id);
             var myChart = new Chart(ctx, {
+                //give a type to the chart. i.e.: "line"
                 type: chartType,
                 data: {
+                    //x-axis for date/time
                     labels: recentTimeX,
-                    // labels: ['day 1', 'day 2', 'day 3', 'day 4'],
                     datasets: [{
+                        //chart head label
                         label: label,
+                        //y-axis for recent readings
                         data: recentY,
-                        // data: [1,5,10,13,12],
+                        //chart color
                         backgroundColor: color,
+                        //chart border color
                         borderColor: bordercolor,
-                        borderWidth: 1
-                    }
-                    ]
+                        borderWidth: 1,
+                    }]
                 },
                 options: {
                     responsiveAnimationDuration: 0,
@@ -100,223 +100,135 @@ function line_bar_chart(link, chartType, id, color, bordercolor, label, Ylabel) 
                         xAxes: [{
                             ticks: {
                                 beginAtZero: true
-                                // maxTicksLimit: 20
                             }
                         }],
                         yAxes: [{
                             scaleLabel: {
                                 display: true,
+                                //y-axis label
                                 labelString: Ylabel,
                             },
                             ticks: {
                                 beginAtZero: true
-                                // stepSize: 5
-                                // maxTicksLimit: 20
                             }
                         }]
+                    },
+                    pan: {
+                        enabled: true,
+                        //pan only x-xis
+                        mode: 'x'
+                    },
+                    zoom: {
+                        enabled: true,
+                        //zoom only x-axis
+                        mode: 'x'
                     }
                 }
             });
 
+            //compare function with given statements that compares the temperature chart values in the humidity chart.
+            $('.compare').click(function () {
+                //input value from the default select option: "choose".
+                input = $('.chartLink1 option:selected').val();
+                //if statement that checks the input > alert.
+                if (input == "choose") {
+                    swal("Oops!", "Choose a sensor for each chart first!", "error");
+                }
+                    //else if statement that checks the corresponding chart id > pushes recent temperature data to the humidity chart.
+                    else if(id == "myChart") {
+                        myChart.data.datasets.push({
+                            label: 'Humidity ' + input ,
+                            backgroundColor:'rgba(0, 0, 0, 0.0)',
+                            borderColor:'rgba(180, 226, 243, 0.9)',
+                            data: recentY,
+                            width: 1,
+                            type: 'line'
+                        });
+                        myChart.update();
+                    }
 
-            // $(document).ready(function () {
-            //     var obj = new Object();
-            //     $('#chartLink').change(function () {
-            //         input = chartLink = obj.chartLink = $('#chartLink').val();
-            //
-            //         if (input) {
-            //             myChart.clear();
-            //             createChart(chartLink, "line", "myChart", "rgba(255, 99, 132, 0.2)", "rgb(255, 99, 132)",  'Temperature', '°C');
-            //         }
-            //         else {
-            //             alert('error');
-            //         }
-            //     });
-            // });
+            });
 
-            // $(document).ready(function () {
-            //
-            //     var Temp = "temperature";
-            //     var Humid = "humidity";
-            //     var urlAddress = "http://145.24.222.154/api/";
-            //     var urlQuery = "?limit=5&sort=-date&sensor_id=";
-            //     var obj = new Object();
-            //
-            //     $('#chartLink').change(function () {
-            //
-            //         // $("#inputTemp1").val(urlAddress + Temp + urlQuery + 1);
-            //         // $("#inputTemp2").val(urlAddress + Temp + urlQuery + 2);
-            //         // $("#inputTemp3").val(urlAddress + Temp + urlQuery + 3);
-            //
-            //         input = chartLink = obj.chartLink = $('#chartLink').val();
-            //
-            //
-            //         if (input) {
-            //             createChart(chartLink, "line", "myChart", "rgba(255, 99, 132, 0.2)", "rgb(255, 99, 132)",  'Temperature', '°C');
-            //             if (id == "myChart") {
-            //                 myChart.destroy();
-            //             }
-            //         }
-            //         else {
-            //             alert('error');
-            //         }
-            //     });
-            //
-            //     $('#chartLink2').change(function () {
-            //
-            //         $("#inputHumid1").val(urlAddress + Humid + urlQuery + 1);
-            //         $("#inputHumid2").val(urlAddress + Humid + urlQuery + 2);
-            //         $("#inputHumid3").val(urlAddress + Humid + urlQuery + 3);
-            //
-            //         input2 = chartLink2 = obj.chartLink2 = $('#chartLink2').val();
-            //
-            //         if (input2) {
-            //             createChart(chartLink2, "bar", "myChart1", "rgba(180, 226, 243, 0.5)", "rgb(150, 226, 243)", 'Humidity', '%');
-            //             if (id == 'myChart1') {
-            //                 myChart.destroy();
-            //             }
-            //         }
-            //         else {
-            //             alert('error');
-            //         }
-            //     });
-            // });
+            //compare1 function with given statements that compares the humidity chart values in the temperature chart.
+            $('.compare1').click(function () {
+                //input value from the default select option: "choose".
+                input = $('.chartLink option:selected').val();
+                //if statement that checks the input > alert.
+                if (input == "choose") {
+                    swal("Oops!", "Choose a sensor for each chart first!", "error");
+                }
+                    //else if statement that checks the corresponding chart id > pushes recent humidity data to the temperature chart.
+                    else if(id == "myChart1") {
+                        myChart.data.datasets.push({
+                            label: 'Temperature ' + input ,
+                            backgroundColor:'rgba(0, 0, 0, 0.0)',
+                            borderColor:'rgba(255, 99, 132, 0.9)',
+                            data: recentY,
+                            type: 'line'
+                        });
+                        myChart.update();
+                    }
+            });
 
-            // function updateData() {
-            //     myChart.data.datasets[0].data = recentY;
-            //     myChart.data.labels = recentDateX;
-            // };
-            // document.getElementById("updateData").onclick = updateData;
-
-            // $("button").click(function(){
-            //     $("btn").toggleClass("btn");
-            //     myChart.data.labels = recentTimeX;
-            //     myChart.data.labels = recentDateX;
-            //     myChart.update();
-            // });
-
+            //state variable
             var astate = 0;
 
-            $('#switchFormat').click(function (e) {
-                // $(this).click("click", function () {
-                    if (astate == 0 && id == "myChart") {
-                        myChart.data.labels = recentTimeX;
-                        myChart.update();
-                        astate = 1;
-                    } else {
-                        myChart.data.labels = recentDateX;
-                        myChart.update();
-                        astate = 0;
-                    }
-                // });
-            });
-            $('#switchFormat1').click(function (e) {
-                // $(this).click("click", function () {
-                if (astate == 0 && id == "myChart1") {
-                    myChart.data.labels = recentTimeX;
+            //switches between date: DD/MM/YYYY and time: HH/MM/SS on the x-axis
+            //statements to check the current state and corresponding id for switching between date and time.
+            $('.switchFormat').click(function () {
+                if (astate == 0 && id == "myChart") {
+                    myChart.data.labels = recentDateX;
+                    //update the chart with the new labels.
                     myChart.update();
                     astate = 1;
-                } else {
-                    myChart.data.labels = recentDateX;
+                } else if (id == "myChart") {
+                    myChart.data.labels = recentTimeX;
                     myChart.update();
                     astate = 0;
                 }
-                // });
             });
 
-            // var ctx = document.getElementById("myChart3");
-            // var myChart3 = new Chart(ctx, {
-            //     type: 'bar',
-            //     data: {
-            //         // labels:['Red', 'Blue', 'Green', 'Yellow'],
-            //         labels: sortedDate,
-            //         datasets: [{
-            //             label: 'Temperature',
-            //             // data:[5, 10, 15, 40],
-            //             data: temp,
-            //             backgroundColor: 'rgba(255, 99, 132, 0.2)',
-            //             borderColor: 'rgba(255,99,132,1)',
-            //             borderWidth: 1
-            //         }]
-            //     },
-            //     options: {
-            //         responsiveAnimationDuration: 3500,
-            //         scales: {
-            //             yAxes: [{
-            //                 ticks: {
-            //                     beginAtZero: true
-            //                 }
-            //             }]
-            //         }
-            //     }
-            // });
+            $('.switchFormat1').click(function () {
+                if (astate == 0 && id == "myChart1") {
+                    myChart.data.labels = recentDateX;
+                    myChart.update();
+                    astate = 1;
+                } else if (id == "myChart1") {
+                    myChart.data.labels = recentTimeX;
+                    myChart.update();
+                    astate = 0;
+                }
+            });
+
+            // function isSiteOnline(url,callback) {
+            //     // try to load favicon
+            //     var timer = setTimeout(function(){
+            //         // timeout after 5 seconds
+            //         callback(false);
+            //     },5000)
             //
-            // var pieData = {
-            //     labels: [
-            //         "Purple",
-            //         "Green",
-            //         "Orange",
-            //         "Yellow",
-            //     ],
-            //     datasets: [
-            //         {
-            //             data: temp,
-            //             backgroundColor: [
-            //                 "#878BB6",
-            //                 "#4ACAB4",
-            //                 "#FF8153",
-            //                 "#FFEA88",
-            //                 "#878BB6",
-            //                 "#4ACAB4",
-            //                 "#FF8153",
-            //                 "#FFEA88",
-            //                 "#878BB6",
-            //                 "#4ACAB4",
-            //                 "#FF8153",
-            //                 "#FFEA88"
-            //             ]
-            //         }
-            //     ]
-            // };
-            //
-            // var ctx = document.getElementById("myChart2").getContext("2d");
-            // var myChart2 = new Chart(ctx, {
-            //     type: 'polarArea',
-            //     data: pieData,
-            //     options: {
-            //         animation:{
-            //             animateScale:true,
-            //             responsiveAnimationDuration: 3500,
-            //         }
+            //     var img = document.createElement("img");
+            //     img.onload = function() {
+            //         clearTimeout(timer);
+            //         callback(true);
             //     }
-            // });
             //
-            // var ctx = document.getElementById("myChart1");
-            // var myChart1 = new Chart(ctx, {
-            //     type: 'pie',
-            //     data: {
-            //         labels: sortedDate,
-            //         datasets: [{
-            //             label: 'Temperature',
-            //             // data:[5, 10, 15, 40],
-            //             data: temp,
-            //             backgroundColor: 'rgba(255, 99, 132, 0.2)',
-            //             borderColor: 'rgba(255,99,132,1)',
-            //             borderWidth: 1
-            //         }]
-            //     },
-            //     options: {
-            //         responsiveAnimationDuration: 3500,
-            //         scales: {
-            //             yAxes: [{
-            //                 ticks: {
-            //                     beginAtZero:true
-            //                 }
-            //             }]
-            //         }
+            //     img.onerror = function() {
+            //         clearTimeout(timer);
+            //         callback(false);
             //     }
-            // });
+            //
+            //     img.src = url+"/favicon.ico";
+            // }
+            //
+            // isSiteOnline("http://www.145.24.222.154/api/temperature",function(found){
+            //     if(found) {
+            //         alert("online")
+            //     }
+            //     else {
+            //        alert("false")
+            //     }
+            // })
         }
     }
 };
-

@@ -1,8 +1,11 @@
 {
-  "name":"ChibbWebApp",
-  "version":"1.0.0",
+  "name": "ChibbWebApp",
+  "version": "1.0.0",
   "description": "CHIBB House Web Application",
   "main": "app.js",
+  "scripts": {
+  "test": "mocha"
+  },
   "author": "Stefan Bilic",
   "license": "ISC",
   "dependencies": {
@@ -18,7 +21,12 @@
     "mongodb": "*",
     "mongoose": "*",
     "passport": "*",
+    "mocha": "3.4.2",
     "passport-http": "*",
-    "passport-local": "*"
+    "passport-local": "*",
+    "describe": "*"
+  },
+  "devDependencies": {
+    "mocha": "^3.4.2"
   }
 }
