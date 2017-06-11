@@ -14,14 +14,14 @@ var LocalStrategy = require('passport-local').Strategy;
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/registeruser');
-// mongoose.connect('mongodb://145.24.222.154/chibb');
+// mongoose.connect('mongodb://localhost/registeruser');
+mongoose.connect('mongodb://145.24.222.154/chibb');
 
 //folder routes
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
-// Init App
+// Init App.
 var app = express();
 
 // View Engine
