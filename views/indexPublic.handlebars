@@ -38,7 +38,7 @@
                     <a class="page-scroll" href="#page-top">HOME</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#chart2">CHART</a>
+                    <a class="page-scroll" href="#chart2">HUMIDITY</a>
                 </li>
                 <li>
                     <a class="page-scroll" href="#models">3D MODELS</a>
@@ -152,7 +152,6 @@
             <div class="col-xs-12 vertical-offset-extra">
                 {{> linechart}}
             </div>
-
         </div>
     </div>
     <a class="page-scroll arrow" href="#chart2">
@@ -164,8 +163,13 @@
 <section id="chart2" class="services-section">
     <div class="container">
         <div class="row">
+            <div class="col-xs-12">
+                <h1 class="text-center">
+                    HUMIDITY
+                </h1>
+            </div>
             <div class="col-xs-12 vertical-offset-extra">
-                <canvas id="myChart1"></canvas>
+                {{> barchart}}
             </div>
         </div>
     </div>
@@ -179,7 +183,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-               <h1>3D MODEL</h1>
+               <h1>CHIBB HOUSE 3D MODEL</h1>
             </div>
             <div class="col-xs-12 vertical-offset-extra">
                 <video autoplay="autoplay" muted loop>

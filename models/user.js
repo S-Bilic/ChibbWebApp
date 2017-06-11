@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 
-// user Schema
+//user Schema
 var UserSchema = mongoose.Schema({
     username: {
         type: String,
@@ -15,7 +15,7 @@ var UserSchema = mongoose.Schema({
     }
 });
 
-// To make it usable in other files
+//to make it usable in other files
 var User = module.exports = mongoose.model('User', UserSchema);
 
 module.exports.createUser = function (newUser, callback) {
@@ -28,6 +28,7 @@ module.exports.createUser = function (newUser, callback) {
     });
 };
 
+//module exports
 module.exports.getUserByUsername = function(username, callback) {
     var query = {username:username};
     User.findOne(query, callback);

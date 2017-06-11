@@ -1,76 +1,156 @@
 <link rel="stylesheet" href="/css/index.css" />
-<a href="https://www.facebook.com/chibbatelier/" class="btn btn-social-icon btn-facebook pull-right">
-    <span class="fa fa-2x fa-facebook"></span>
-</a>
-<a href="https://twitter.com/CHV_Rotterdam" class="btn btn-social-icon btn-twitter pull-right">
-    <span class="fa fa-2x fa-twitter"></span>
-</a>
 
-    <nav class="navbar navbar-default sidebar" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+<nav class="navbar sidebar" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand white" href="#">CHIBB HOUSE</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="#">Dashboard<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="" data-toggle="modal" data-target="#myModal">Sensor Status<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-stats"></span>
+                    </a>
+                    <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Sensor status</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="sensornodes"></div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">Upload Sensor Nodes
+                        <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-upload"></span>
+                    </a>
+                    <ul class="dropdown-menu forAnimate" role="menu">
+                        <li class="form-group">
+                            <label class="horizontal-offset white">Sensor ID</label>
+                            <input id="sensor_id" class="form-control" type="text" placeholder="Sensor ID">
+                        </li>
+                        <li class="form-group">
+                            <label class="horizontal-offset white">Sensor Type</label>
+                            <input id="sensor_type" class="form-control" type="text" placeholder="Temperature or Humidity">
+                        </li>
+                        <li class="form-group">
+                            <label class="horizontal-offset white">Sensor Location</label>
+                            <input id="location" class="form-control" type="text" placeholder="Sensor Location" name="username" >
+                        </li>
+                        <li>
+                            <button href="#" class="btn btn-register-submit btn-add">SEND</button>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/public">Public view
+                        <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-globe"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/logout">Logout
+                        <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon  glyphicon-log-out"></span>
+                    </a>
+                </li>
+            </ul>
+            <a href="https://www.facebook.com/chibbatelier/" class="btn btn-social-icon btn-facebook white pull-right">
+            <span class="fa fa-2x fa-facebook"></span>
+            </a>
+            <a href="https://twitter.com/CHV_Rotterdam" class="btn btn-social-icon btn-twitter white pull-right">
+            <span class="fa fa-2x fa-twitter"></span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="main">
+    <div class="col-xs-12 col-sm-12 col-md-6 vertical-offset-extra">
+        <div class="well">
+            {{> linechart}}
+            <div class="row">
+                <a id="download1"><span class="glyphicon showopacity glyphicon-save vertical-offset-extra pull-right visible-xs visible-sm" title="Save Image as PNG"></span></a>
+                <div class="col-xs-12 col-md-3 vertical-offset-extra">
+                    <select class="form-control chartLink">
+                        <option disabled selected hidden value="choose">Choose a Sensor</option>
+                        <option value="1">Sensor 1</option>
+                        <option value="2">Sensor 2</option>
+                        <option value="3">Sensor 3</option>
+                    </select>
+                </div>
+                <button class="compare1 btn btn-info vertical-offset-extra hidden-xs hidden-sm">Compare Temp</button>
+                <a id="download1"><span class="glyphicon showopacity glyphicon-save vertical-offset-extra pull-right hidden-xs hidden-sm" title="Save Image as PNG"></span></a>
             </div>
-            <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li class="active">
-                        <a href="#">Dashboard<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">Charts<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-stats"></span>
-                        </a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Upload Sensor Nodes
-                            <span class="caret"></span>
-                            <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-upload"></span>
-                        </a>
-                        <ul class="dropdown-menu forAnimate" role="menu">
-                            <form method="post">
-                                <li class="form-group">
-                                    <label>Add Sensor</label>
-                                    <input class="form-control" type="text" placeholder="Username" name="username" >
-                                </li>
-                                <li>
-                                    <button class="btn btn-register-submit" type="submit"> SEND </button>
-                                </li>
-                            </form>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="/public">Public view
-                            <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon glyphicon glyphicon-globe"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/logout">Logout
-                            <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon glyphicon-log-out"></span>
-                        </a>
-                    </li>
-                </ul>
+            <div class="row">
+                <div class="col-xs-12 col-md-3 vertical-offset">
+                    <input class="form-control" id="limitValue" placeholder="Enter Amount" />
+                    <input type="button" class="col-xs-12 getValue btn btn-info vertical-offset visible-xs visible-sm" value="Generate"/>
+                    <button class="col-xs-12 compare1 btn btn-info vertical-offset visible-xs visible-sm">Compare Temp</button>
+                    <button class="col-xs-12 switchFormat btn btn-info vertical-offset pull-right visible-xs visible-sm"> Switch Date/Hours </button>
+                </div>
+                <button class="switchFormat btn btn-info vertical-offset pull-right hidden-xs hidden-sm"> Switch Date/Hours </button>
+                <input type="button" class="getValue btn btn-info vertical-offset hidden-xs hidden-sm" value="Generate" />
+                <div class="col-xs-12 col-md-2 vertical-offset pull-right">
+                    <input class="form-control getReading" id="getReading" placeholder="Filter temp" />
+                </div>
             </div>
         </div>
-    </nav>
-
-    <div class="col-xs-12 col-md-4 vertical-offset">
-        {{> linechart}}
     </div>
-    <div class="col-xs-12 col-md-4 vertical-offset">
-        {{> barchart}}
+    <div class="col-xs-12 col-sm-12 col-md-6 vertical-offset-extra">
+        <div class="well">
+            {{> barchart}}
+            <div class="row">
+                <a id="download1"><span class="glyphicon showopacity glyphicon-save vertical-offset-extra pull-right visible-xs visible-sm" title="Save Image as PNG"></span></a>
+                <div class="col-xs-12 col-md-3 vertical-offset-extra">
+                    <select class="form-control chartLink1">
+                        <option disabled selected hidden value="choose">Choose a Sensor</option>
+                        <option value="1">Sensor 1</option>
+                        <option value="2">Sensor 2</option>
+                        <option value="3">Sensor 3</option>
+                    </select>
+                </div>
+                <button class="compare btn btn-info vertical-offset-extra hidden-xs hidden-sm">Compare Humid</button>
+                <a id="download1"><span class="glyphicon showopacity glyphicon-save vertical-offset-extra pull-right hidden-xs hidden-sm" title="Save Image as PNG"></span></a>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-3 vertical-offset">
+                    <input class="form-control" id="limitValue1" placeholder="Enter Amount" />
+                    <input type="button" class="col-xs-12 getValue1 btn btn-info vertical-offset visible-xs visible-sm" value="Generate" />
+                    <button class="col-xs-12 compare btn btn-info vertical-offset visible-xs visible-sm">Compare Humid</button>
+                    <button  class="col-xs-12 switchFormat1 btn btn-info vertical-offset pull-right visible-xs visible-sm">Switch Date/Hours </button>
+                </div>
+                <button class="switchFormat1 btn btn-info vertical-offset pull-right hidden-xs hidden-sm">Switch Date/Hours </button>
+                <input type="button" class="getValue1 btn btn-info vertical-offset hidden-xs hidden-sm" value="Generate" />
+                <div class="col-xs-12 col-md-2 vertical-offset pull-right">
+                    <input class="form-control getReading1" id="getReading1" placeholder="Filter humid" />
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-xs-12 col-md-4 vertical-offset-extra">
-        {{> piechart}}
+    <div class="col-xs-12">
+        <div class="well">
+            <div id="map"></div>
+        </div>
     </div>
-    <div class="col-xs-12 col-md-4 vertical-offset-extra">
-        {{> radarchart}}
-    </div>
-
-
-
-
+</div>

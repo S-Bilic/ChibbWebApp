@@ -1,3 +1,4 @@
+// modules
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -13,14 +14,14 @@ var LocalStrategy = require('passport-local').Strategy;
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/registeruser');
+// mongoose.connect('mongodb://localhost/registeruser');
+mongoose.connect('mongodb://145.24.222.154/chibb');
 
-var db = mongoose.connection;
-
+//folder routes
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
-// Init App
+// Init App.
 var app = express();
 
 // View Engine
@@ -39,7 +40,7 @@ app.use(cookieParser());
 // Set Static Folder
 app.use(express.static(path.join((__dirname,'public'))));
 
-// Express Session
+// Express Session Middleware
 app.use(session({
     secret: 'secret',
     saveUninitialized: true,
@@ -50,7 +51,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Express Validator
+// Express Validator Middleware
 app.use(expressValidator({
     errorFormatter: function(param, msg, value) {
         var namespace = param.split('.')
@@ -89,3 +90,6 @@ app.set('port',(process.env.PORT || 3000));
 app.listen(app.get('port'), function(){
     console.log('Server connected on port '+app.get('port'));
 });
+
+
+
