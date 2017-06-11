@@ -1,16 +1,14 @@
 var assert = require('assert');
-var test = require('chart_type.js');
+var request = require("request");
+var loadtest = require('loadtest');
+var base_url2 = "http://145.24.222.154/api/humidity";
+var base_url = "http://145.24.222.154/api/temperature";
 
-describe('sensorNodes', function () {
-   it('parameters are link', function () {
-     test.assert.equal('test')
-   });
+describe("GET response from api link /", function() {
+    it("returns status code 200", function(done) {
+        request.get(base_url, function (error, response) {
+            assert.equal(200, response.statusCode);
+            done();
+        });
+    });
 });
-
-// describe('Array', function () {
-//     describe('#indexOf()', function () {
-//         it('should return -1 when the value is not present', function () {
-//             assert.equal(-1, [1, 2, 3].indexOf(4));
-//         });
-//     });
-// });

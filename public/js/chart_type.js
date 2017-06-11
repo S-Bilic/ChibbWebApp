@@ -21,8 +21,6 @@ $(document).ready(function () {
         var idUrl = "&sort=-date&sensor_id=";
         var readingUrl = "&reading=";
 
-        //the createChart(); function that creates the charts with the given input parameters that are available.
-
         //default temp chart
         createTempChart(urlAddress + temp + limitDefaultUrl + idUrl + 1, "myChart");
 
@@ -41,6 +39,7 @@ $(document).ready(function () {
         });
 
         $('.getReading').on("keyup", function () {
+            //filter on specific reading
             getReading = $("#getReading").val();
             input = $('.chartLink option:selected').val();
             if (input == "choose") {
@@ -67,6 +66,7 @@ $(document).ready(function () {
         });
 
         $('.getReading1').on("keyup", function () {
+            //filter on specific reading
             getReading = $("#getReading1").val();
             input = $('.chartLink1 option:selected').val();
             if (input == "choose") {

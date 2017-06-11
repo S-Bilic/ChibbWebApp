@@ -4,7 +4,7 @@
   "description": "CHIBB House Web Application",
   "main": "app.js",
   "scripts": {
-  "test": "mocha"
+    "test": "mocha"
   },
   "author": "Stefan Bilic",
   "license": "ISC",
@@ -18,14 +18,16 @@
     "express-messages": "*",
     "express-session": "*",
     "express-validator": "*",
+    "loadtest": "^2.3.0",
+    "mocha": "3.4.2",
     "mongodb": "*",
     "mongoose": "*",
     "passport": "*",
-    "mocha": "3.4.2",
     "passport-http": "*",
     "passport-local": "*"
   },
   "devDependencies": {
-    "mocha": "^3.4.2"
+    "mocha": "^3.4.2",
+    "chai": "*"
   }
 }

@@ -1,19 +1,115 @@
-$("#addNodes").click(function () {
+$(document).ready(function () {
+    var url = "http://145.24.222.154/api/nodemanager";
 
-    var new_sensor = new Object();
-    new_sensor.name = $("#sensorName").val();
-    new_sensor.id = $("#sensorID").val();
-    new_sensor.list = new Object();
+    //get the json status data from the api nodemanager
+    function getNodes() {
+        $.getJSON(url, function (json) {
+            displayNodes(json)
+        });
+    }
 
-    var itemName = $("#itemName").val();
-    var itemType = $("#itemValue").val();
+    //display the nodes using a for loop on the data combining it with a content string that shows the corresponding sensor_type, sensor_id and status
+    function displayNodes(data) {
+        for (var i = 0; i < data.length; i++) {
+            var sensorcolor = "";
+            if (data[i].status == "active") {
+                sensorcolor = "fa fa-1x fa-circle fa-circle-on";
+            } else {
+                sensorcolor = "fa fa-1x fa-circle fa-circle-off";
+            }
+            var html = ' <div class="col-xs-12 text-center vertical-offset">' +
+                '<h4>'+data[i].sensor_type + ' ' + data[i].sensor_id +'</h4>' +
+                '<div class=" ' + sensorcolor + ' "></div>' +
+                '</div>' +
+                '<div class="col-xs-12 text-center vertical-offset">' +
+                '<button class="btn btn-info btn-on" data-status="' + data[i].status + '" data-sensor=' + data[i]._id + '>TOGGLE</button>' +
+                '<button class="btn btn-info btn-delete" data-status="' + data[i].status + '" data-sensor=' + data[i]._id + '>DELETE</button>' +
+                '</div>';
 
-    new_sensor.list[itemName] = itemType;
+            $('.sensornodes').append(html);
+        }
+        addNode();
+        updateNode();
+        deleteNode();
+    }
 
-    console.log(JSON.stringify(new_sensor));
+    //add a sensor node to the api nodemanager. Using the users input to POST data.
+    function addNode() {
+        $(".btn-add").click(function () {
+            var sensor_id = $("#sensor_id").val();
+            var sensor_type = $("#sensor_type").val();
+            var location = $("#sensor_location").val();
 
-    $.post("http://145.24.222.154/api/nodemanager", new_sensor, function (data) {
-    console.log(data);
+            var object = {
+                "sensor_id": sensor_id,
+                "sensor_type": sensor_type,
+                "location": location,
+                "status": "active",
+                "interval": 0
+            };
 
-    }, "json");
+            var json = JSON.stringify(object);
+
+            $.ajax({
+                url: url,
+                data: json,
+                type: 'POST',
+                contentType: "application/json",
+                success: function (result) {
+                    location.reload();
+                }
+            });
+        });
+    }
+
+    //update the node to active or inactive. Using the PUT method for the update.
+    function updateNode() {
+        $('.btn-on').click(function () {
+            var id = $(this).attr('data-sensor');
+            var status = $(this).attr('data-status');
+
+            var new_status = "";
+            if (status === "active") {
+                new_status = "inactive"
+            } else {
+                new_status = "active";
+            }
+
+            var object = {
+                "status": new_status
+            };
+
+            var json = JSON.stringify(object);
+
+            $.ajax({
+                url: url + "/" + id,
+                data: json,
+                type: 'PUT',
+                contentType: "application/json",
+                success: function (result) {
+                    location.reload();
+                }
+            });
+            // console.log(status);
+        });
+    };
+
+    //delete the node. Using the DELETE method
+    function deleteNode() {
+        $('.btn-delete').click(function () {
+            var id = $(this).attr('data-sensor');
+            var status = $(this).attr('data-status');
+            $.ajax({
+                url: url + "/" + id,
+                data: null,
+                type: 'DELETE',
+                contentType: "application/json",
+                success: function (result) {
+                    location.reload();
+                }
+            });
+        });
+    }
+    getNodes()
 });
+

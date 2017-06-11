@@ -20,33 +20,47 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/chart">Add Charts<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-stats"></span>
+                    <a href="" data-toggle="modal" data-target="#myModal">Sensor Status<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-stats"></span>
                     </a>
+                    <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Sensor status</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="sensornodes"></div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Upload Sensor Nodes
-                        <span class="caret"></span>
+                    <a class="dropdown-toggle" data-toggle="dropdown">Upload Sensor Nodes
                         <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-upload"></span>
                     </a>
                     <ul class="dropdown-menu forAnimate" role="menu">
                         <li class="form-group">
-                            <label class="horizontal-offset white">Name</label>
-                            <input id="sensorName" class="form-control" type="text" placeholder="Sensor Node" name="username" >
+                            <label class="horizontal-offset white">Sensor ID</label>
+                            <input id="sensor_id" class="form-control" type="text" placeholder="Sensor ID">
                         </li>
                         <li class="form-group">
-                            <label class="horizontal-offset white">ID</label>
-                            <input id="sensorID" class="form-control" type="text" placeholder="Sensor Node" name="username" >
+                            <label class="horizontal-offset white">Sensor Type</label>
+                            <input id="sensor_type" class="form-control" type="text" placeholder="Temperature or Humidity">
                         </li>
                         <li class="form-group">
-                            <label class="horizontal-offset white">itemName</label>
-                            <input id="itemName" class="form-control" type="text" placeholder="Sensor Node" name="username" >
-                        </li>
-                        <li class="form-group">
-                            <label class="horizontal-offset white">itemValue</label>
-                            <input id="itemValue" class="form-control" type="text" placeholder="Sensor Node" name="username" >
+                            <label class="horizontal-offset white">Sensor Location</label>
+                            <input id="location" class="form-control" type="text" placeholder="Sensor Location" name="username" >
                         </li>
                         <li>
-                            <button id="addNodes" class="btn btn-register-submit"> SEND </button>
+                            <button href="#" class="btn btn-register-submit btn-add">SEND</button>
                         </li>
                     </ul>
                 </li>
@@ -104,35 +118,35 @@
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-6 vertical-offset-extra">
-            <div class="well">
-                {{> barchart}}
-                <div class="row">
-                    <a id="download1"><span class="glyphicon showopacity glyphicon-save vertical-offset-extra pull-right visible-xs visible-sm" title="Save Image as PNG"></span></a>
-                    <div class="col-xs-12 col-md-3 vertical-offset-extra">
-                        <select class="form-control chartLink1">
-                            <option disabled selected hidden value="choose">Choose a Sensor</option>
-                            <option value="1">Sensor 1</option>
-                            <option value="2">Sensor 2</option>
-                            <option value="3">Sensor 3</option>
-                        </select>
-                    </div>
-                    <button class="compare btn btn-info vertical-offset-extra hidden-xs hidden-sm">Compare Humid</button>
-                    <a id="download1"><span class="glyphicon showopacity glyphicon-save vertical-offset-extra pull-right hidden-xs hidden-sm" title="Save Image as PNG"></span></a>
+        <div class="well">
+            {{> barchart}}
+            <div class="row">
+                <a id="download1"><span class="glyphicon showopacity glyphicon-save vertical-offset-extra pull-right visible-xs visible-sm" title="Save Image as PNG"></span></a>
+                <div class="col-xs-12 col-md-3 vertical-offset-extra">
+                    <select class="form-control chartLink1">
+                        <option disabled selected hidden value="choose">Choose a Sensor</option>
+                        <option value="1">Sensor 1</option>
+                        <option value="2">Sensor 2</option>
+                        <option value="3">Sensor 3</option>
+                    </select>
                 </div>
-                <div class="row">
-                    <div class="col-xs-12 col-md-3 vertical-offset">
-                        <input class="form-control" id="limitValue1" placeholder="Enter Amount" />
-                        <input type="button" class="col-xs-12 getValue1 btn btn-info vertical-offset visible-xs visible-sm" value="Generate" />
-                        <button class="col-xs-12 compare btn btn-info vertical-offset visible-xs visible-sm">Compare Humid</button>
-                        <button  class="col-xs-12 switchFormat1 btn btn-info vertical-offset pull-right visible-xs visible-sm">Switch Date/Hours </button>
-                    </div>
-                    <button class="switchFormat1 btn btn-info vertical-offset pull-right hidden-xs hidden-sm">Switch Date/Hours </button>
-                    <input type="button" class="getValue1 btn btn-info vertical-offset hidden-xs hidden-sm" value="Generate" />
-                    <div class="col-xs-12 col-md-2 vertical-offset pull-right">
-                        <input class="form-control getReading1" id="getReading1" placeholder="Filter humid" />
-                    </div>
+                <button class="compare btn btn-info vertical-offset-extra hidden-xs hidden-sm">Compare Humid</button>
+                <a id="download1"><span class="glyphicon showopacity glyphicon-save vertical-offset-extra pull-right hidden-xs hidden-sm" title="Save Image as PNG"></span></a>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-3 vertical-offset">
+                    <input class="form-control" id="limitValue1" placeholder="Enter Amount" />
+                    <input type="button" class="col-xs-12 getValue1 btn btn-info vertical-offset visible-xs visible-sm" value="Generate" />
+                    <button class="col-xs-12 compare btn btn-info vertical-offset visible-xs visible-sm">Compare Humid</button>
+                    <button  class="col-xs-12 switchFormat1 btn btn-info vertical-offset pull-right visible-xs visible-sm">Switch Date/Hours </button>
+                </div>
+                <button class="switchFormat1 btn btn-info vertical-offset pull-right hidden-xs hidden-sm">Switch Date/Hours </button>
+                <input type="button" class="getValue1 btn btn-info vertical-offset hidden-xs hidden-sm" value="Generate" />
+                <div class="col-xs-12 col-md-2 vertical-offset pull-right">
+                    <input class="form-control getReading1" id="getReading1" placeholder="Filter humid" />
                 </div>
             </div>
+        </div>
     </div>
     <div class="col-xs-12">
         <div class="well">
