@@ -4,7 +4,7 @@ function downloadCanvas(link, canvasId, filename) {
 }
 
 $(document).ready(function () {
-    //Download Line Chart
+    //Download Line Chart.
     $('.download1').click(function () {
         downloadCanvas(this, 'myChart', 'line_chart.png');
     });
