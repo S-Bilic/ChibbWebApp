@@ -2,13 +2,15 @@ function downloadCanvas(link, canvasId, filename) {
     link.href = document.getElementById(canvasId).toDataURL();
     link.download = filename;
 }
-//Download Line Chart
-document.getElementById('download1').addEventListener('click', function() {
-    downloadCanvas(this, 'myChart', 'line_chart.png');
-}, false);
 
-//Download Bar Chart
-document.getElementById('download2').addEventListener('click', function() {
-    downloadCanvas(this, 'myChart1', 'bar_chart.png');
-}, false);
+$(document).ready(function () {
+    //Download Line Chart.
+    $('.download1').click(function () {
+        downloadCanvas(this, 'myChart', 'line_chart.png');
+    });
 
+    //Download Bar Chart
+    $('.download2').click(function () {
+        downloadCanvas(this, 'myChart1', 'bar_chart.png');
+    });
+});
