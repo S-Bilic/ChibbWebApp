@@ -52,16 +52,3 @@ function myMap() {
         })(marker, i));
     }
 }
-
-//
-// //map positions
-// var chibb = {lat: 51.897318, lng: 4.424676};
-// var smart = {lat: 51.8105978, lng: 4.6272719};
-// var locations = [
-//     ['Bondi Beach', -33.890542, 151.274856, 4],
-//     ['Coogee Beach', -33.923036, 151.259052, 5],
-// ];
-//
-//
-//
-
