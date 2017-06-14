@@ -28,7 +28,10 @@ Plugin scripts:
 
   -sweetalert2.js
 
-
-API repo:
+API:
 
 https://github.com/S-Bilic/ict_lab_api-master
+
+Stream:
+
+https://github.com/S-Bilic/Stream
