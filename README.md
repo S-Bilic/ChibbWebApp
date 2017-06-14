@@ -11,8 +11,6 @@ The files for the visualisation and dashboard are in public/js:
 
 -googlemap.js
 
-
-
 Plugin scripts:
 
 -Chart.js
