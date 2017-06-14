@@ -1,6 +1,8 @@
 # ChibbWebApp
 Web Application made by S.Bilic
 
+Main file: app.js
+
 The files for the visualisation and dashboard are in public/js:
 
   -line_bar_chart.js
@@ -10,6 +12,9 @@ The files for the visualisation and dashboard are in public/js:
   -node_manager.js
 
   -googlemap.js
+  
+  -chart_download.js
+  
 
 Plugin scripts:
 
