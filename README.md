@@ -14,6 +14,7 @@ The files for the visualisation and dashboard are in public/js:
 Plugin scripts:
 
 -Chart.js
+
 -chartjs-plugin-zoom.js
 
 -bootstrap.js
