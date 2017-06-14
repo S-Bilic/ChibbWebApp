@@ -27,3 +27,8 @@ Plugin scripts:
   -all jquery files
 
   -sweetalert2.js
+
+
+API repo:
+
+https://github.com/S-Bilic/ict_lab_api-master
