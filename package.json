@@ -24,10 +24,12 @@
     "mongoose": "*",
     "passport": "*",
     "passport-http": "*",
-    "passport-local": "*"
+    "passport-local": "*",
+    "request": "^2.81.0"
   },
   "devDependencies": {
     "mocha": "^3.4.2",
-    "chai": "*"
+    "chai": "*",
+    "request": "*"
   }
 }
